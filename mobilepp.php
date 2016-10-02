@@ -9,8 +9,8 @@ date_default_timezone_set('America/Los_Angeles');
 include("include/common.php");
 
 # Open the connection to MySQL
-
-
+$conn = mysql_connect(DBHOST, DBUSER, DBPASSWORD) or die(mysql_error());
+mysql_select_db(DBDATABASE, $conn);
 
 # Fetch the events for a given day, and return them as a mysql resource.
 function fetchevents($date)
@@ -117,7 +117,7 @@ a.timetitle { text-decoration: none; }
 a.timetitle:focus { font-size: larger; }
 span.clipped { white-space: nowrap; overflow: hidden; }
 </style>
-<script type="text/JavaScript" src="<?php echo CALURL; ?>js/xmlextras.js"></script>
+<script type="text/JavaScript" src="include/xmlextras.js"></script>
 <script type="text/JavaScript">
 
 // List of pending fetches

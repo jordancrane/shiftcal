@@ -1,13 +1,9 @@
 <?php
-# This is used to generate a PDF file containing a custom Pedalpalooza
-# calendar.  It assumes your list of events is stored in 
 # This searches through the calendar data for user-supplied parameters,
 # and lists the matching events.  It uses the following cookie:
 #
-#	myevents	a list of tokens identifying the events you care about.
-#
-# In addition, you can pass the following as parameters to the request,
-# e.g. viewmypdfpp.php?image=Y to show the poster art on the front page.
+#	myevents	a comma-delimited list of tokens identifying the
+#			events you care about.
 #
 #	printdescr	Non-empty to include print descriptions.
 #
@@ -15,7 +11,8 @@
 #
 #       micro		Non-empty to use extra tiny font
 #
-#	image		Non-empty to show poster image on first page
+#	image		Non-empty to show image on first page
+
 
 include("include/pmPDF.php");
 
@@ -54,8 +51,8 @@ function ischecked($sqldate, $id)
 }
 
 # Connect to MySQL
-
-
+$conn = mysql_connect(DBHOST, DBUSER, DBPASSWORD) or die(mysql_error());
+mysql_select_db(DBDATABASE, $conn);
 
 # Start the PDF output
 $args = array('folds' => 1, 'borders' => 0);

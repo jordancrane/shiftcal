@@ -1,10 +1,13 @@
 <?php
-# This is meant to be used for pop-up info on the viewmypp.php page.
+# This is meant to be used for pop-up info on the viewmypp08.php page.
 # It displays a single event.  For multi-day events, it shows only a single
 # date.
 #
 #     id=	Identifies the event to show
 #     sqldate=	Identifies the date of the event (for multi-day events)
+
+$startdate = "2008-06-12";
+$enddate = "2008-06-28";
 
 $id = $_REQUEST["id"];
 $sqldate = $_REQUEST["sqldate"];
@@ -26,8 +29,8 @@ include("include/view.php");
 <?php
 
 # Connect to MySQL
-
-
+$conn = mysql_connect(DBHOST, DBUSER, DBPASSWORD) or die(mysql_error());
+mysql_select_db(DBDATABASE, $conn);
 
 # This is used for choosing which side images should go on.  The
 # preferred side is always the right side since it doesn't interfere

@@ -16,8 +16,8 @@
 
 	include("include/common.php");
 	include(INCLUDES."/header.html");
-	
-	
+	$conn = mysql_connect(DBHOST, DBUSER, DBPASSWORD) or die(mysql_error());
+	mysql_select_db(DBDATABASE, $conn);
 
 	# If there's an "edit" parameter, then convert it to $id, retrieve
 	# that event, and load its values into the form.
@@ -123,7 +123,7 @@
 
 
 ?>
-<script type="text/javascript" language="JavaScript" src="<?php echo CALURL; ?>js/xmlextras.js">
+<script type="text/javascript" language="JavaScript" src="include/xmlextras.js">
 </script>
 <script type="text/javascript" language="JavaScript">
     // These are some trivial functions, generated via PHP.  They are
@@ -398,7 +398,7 @@ function formversion(chg)
     adjustdatesinput(chg);
 }
 </script>
-<script type="text/javascript" language="JavaScript" src="<?php echo CALURL;?>js/calform.js"></script>
+<script type="text/javascript" language="JavaScript" src="include/calform.js"></script>
 <?php
     print "<style type=\"text/css\">\n";
     print "td.section { background: url(".IMAGES."/ootall.gif) no-repeat;  vertical-align: top; padding-top: 0; margin-top: 0}\n";
@@ -889,7 +889,7 @@ the <a href="/contacts/index.php?eCon=CalCrew">Calendar Crew</a>.
 	  print "<input type=\"text\" size=60 name=\"contact\" value=\"".htmlspecialchars($record["contact"])."\" onchange=\"fix(this.name);\">\n";
 	  print "<br><input type=\"checkbox\" name=\"hidecontact\" value=\"Y\" $chkhidecontact onClick=\"previewonline();\" tabIndex=\"-1\">Don't publish this information online\n";
 	?>
-	<br><em>This can be anything, such as a suggested time of day to
+	<br><em>This can be anything (except URLs), such as a suggested time of day to
 	    call, or where to leave a message, or what coordinates to
 	    feed into a radio telescope.
 	    Most folks will want to leave this blank.
@@ -1015,6 +1015,7 @@ The JavaScript code doesn't exactly mimic the PHP code.)</font>
 <button onClick="document.forms.cal.eventtime.focus();">Scroll up to time</button>
 <button onClick="document.forms.cal.descr.focus();">Scroll up to description</button>
 <button onClick="document.forms.cal.name.focus();">Scroll up to name</button>
+<div style="padding-bottom:40px"></div>
 </center>
 </div>
 <?php

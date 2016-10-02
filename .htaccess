@@ -1,0 +1,16 @@
+# block image hijackers
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^$
+# allow permitted referers your images might be called from:
+RewriteCond %{HTTP_REFERER} !^http://12.180.59.101/.*$
+RewriteCond %{HTTP_REFERER} !^http://shift2bikes.org/.*$
+RewriteCond %{HTTP_REFERER} !^http://www.shift2bikes.org/.*$
+RewriteCond %{HTTP_REFERER} !^http://shifttobikes.org/.*$
+RewriteCond %{HTTP_REFERER} !^http://www.shifttobikes.org/.*$
+RewriteCond %{HTTP_REFERER} !^https://12.180.59.102/.*$
+RewriteCond %{HTTP_REFERER} !^https://shift2bikes.org/.*$
+RewriteCond %{HTTP_REFERER} !^https://www.shift2bikes.org/.*$
+RewriteCond %{HTTP_REFERER} !^https://shifttobikes.org/.*$
+RewriteCond %{HTTP_REFERER} !^https://www.shifttobikes.org/.*$
+# noting the image and file types being called, and what you want to serve them instead:
+RewriteRule .*\.(html|js|gif|GIF|jpg|JPG)$ http://www.shift2bikes.org/wnbr/medium.php

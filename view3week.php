@@ -10,7 +10,7 @@
 
 	include("include/common.php");
 	include("include/view.php");
-	if (!isset($_REQUEST['p']) || $_REQUEST["p"] == "")
+	if ($_REQUEST["p"] == "")
 	{
 		include(INCLUDES."/header.html");
 	}
@@ -22,10 +22,24 @@
 	}
 
 ?>
-<link rel='stylesheet' href='<?php echo CALURL; ?>css/view3week.css' />
+<style type="text/css">
+  div.content { background: #ffc969; }
+  div.tiny { font-size: xx-small; font-stretch: ultra-condensed; }
+  div.tinier { font-size: xx-small; font-stretch: ultra-condensed; }
+  th.weeks { border: none; background: url(images/oocorner.gif) no-repeat; padding-top: 3px; }
+  h1 {margin-top: 5px; margin-bottom: 5px;}
+  h2 {margin: 0; padding-left: 3px; background: url(images/oocorner.gif) no-repeat; clear: left;}
+  dl {margin: 5px; page-break-before: avoid; page-break-after: auto; }
+  dt {margin-top: 5px; font-weight: bold; clear: left; }
+  dd {margin-bottom: 10px; margin-left: 50px; }
+  dt.canceled { text-decoration: line-through; }
+  dd.canceled { text-decoration: line-through; }
+  div.hr {font-size: 1; height:3px; margin: 0; margin-top: 5px; width: 100%; background-color: #ff9a00;}
+  form {margin: 0;}
+</style>
 <?php
-	
-	
+	$conn = mysql_connect(DBHOST, DBUSER, DBPASSWORD) or die(mysql_error());
+	mysql_select_db(DBDATABASE, $conn);
 
 	# Choose the starting date.  This is always the Sunday at or before
 	# today.  We'll move forward from there.
@@ -37,8 +51,8 @@
 	# assumes that day-of-month numbers are unique, which is only true if
 	# numweeks<=4.  If you want to show 5 or more weeks, you'll need to
 	# patch the code.
-	if (isset($_REQUEST['numweeks']) && $_REQUEST['numweeks'] >= 1 && $_REQUEST['numweeks'] <= 4)
-		$numweeks = $_REQUEST['numweeks'];
+	if ($_REQUEST["numweeks"] >= 1 && $_REQUEST["numweeks"] <= 4)
+		$numweeks = $_REQUEST["numweeks"];
 	else
 		$numweeks = 3;
 	$enddate = $startdate + ($numweeks * 7 - 1) * 86400;
@@ -111,7 +125,7 @@ Most of the events in this calendar are <strong>not</strong> produced by Shift.
 	</form>
       </th>
 <?php
-    if (isset($_COOKIE[ADMINCOOKIE]) && $_COOKIE[ADMINCOOKIE] == 'bikefun') {
+    if ($_COOKIE[ADMINCOOKIE] == "bikefun") {
 	print "      <th>\n";
 	print "        <form action=\"admin.php\">\n";
 	print "          <input type=submit value=\"Administration Menu\">\n";
@@ -176,7 +190,7 @@ Most of the events in this calendar are <strong>not</strong> produced by Shift.
 	}
 ?>
 
-  <script language="JavaScript" type="text/javascript">
+  <script language="JavaScript" type="text/JavaScript">
     <!--
       /* Highlight today in the calendar table */
       var now = new Date();
@@ -185,8 +199,15 @@ Most of the events in this calendar are <strong>not</strong> produced by Shift.
     //-->
   </script>
 </div>
+Shift is entirely volunteer-run, but still needs money to keep the lights on.  Please consider donating: 
+<center><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="YJYFXDPLSCW8U">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form></center>
 <?php
-	if (!isset($_REQUEST['p']))
+	if ($_REQUEST["p"] == "")
 	{
 		include(INCLUDES."/footer.html");
 	}

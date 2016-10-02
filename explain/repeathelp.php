@@ -1,7 +1,6 @@
 <html>
   <?php
-    include("../include/common.php");
-    include("../include/repeat.php");
+    include "../include/repeat.php"
   ?>
   <head>
     <title>How To Enter Dates</title>
@@ -57,10 +56,7 @@ if ($_REQUEST["repeat"]) {
 	    print "      <br>Parsed as \"${dates[canonical]}\"";
 	for ($i = 1; $dates[$i]; $i++) 
 	    print "      <br>".date("l, F d, Y", $dates[$i]["timestamp"])."\n";
-	print "      <br> == ".(count($dates)-2)." day(s)";
-	if ($dates['datestype'])
-		print ' - '.$dates['datestype']." days";
-	print " ==\n";
+	print "      <br> == ".(count($dates)-1)." day(s) ==\n";
 	print "    </div>\n";
 }
 ?>

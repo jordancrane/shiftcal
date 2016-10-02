@@ -23,8 +23,8 @@
 #		you want to lock it.
 
     include("include/common.php");
-    
-    
+    $conn = mysql_connect(DBHOST, DBUSER, DBPASSWORD) or die(mysql_error());
+    mysql_select_db(DBDATABASE, $conn);
 
     $loggedin = 0;
     if ($_POST["user"] == ADMINUSER && $_POST["pass"] == ADMINPASS) {
@@ -39,7 +39,7 @@
 <style type="text/css">
     td {text-align: center;}
 </style>
-<script type="text/javascript" src="<?php echo CALURL; ?>js/xmlextras.js"></script>
+<script type="text/javascript" src="include/xmlextras.js"></script>
 <script type="text/javascript">
 function changecaladdr(canon, locname, address, area, locked)
 {

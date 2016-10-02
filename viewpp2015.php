@@ -19,11 +19,11 @@
     include("include/view.php");
     include("include/repeat.php");
 ?>
-<script type="text/javascript" src="<?php echo CALURL; ?>js/countdown.js">
+<script type="text/javascript" src="include/countdown.js">
 </script>
-<script type="text/javascript" src="<?php echo CALURL; ?>js/xmlextras.js">
+<script type="text/javascript" src="include/xmlextras.js">
 </script>
-<script type="text/javascript" src="<?php echo CALURL; ?>js/loadday.js">
+<script type="text/javascript" src="include/loadday.js">
 </script>
 <script type="text/javascript">
 function alldays(checkbox)
@@ -80,6 +80,8 @@ function alldays(checkbox)
   }
 </style>
 <?php
+	$conn = mysql_connect(DBHOST, DBUSER, DBPASSWORD) or die("mysql_connect(".DBHOST.", ...): ".mysql_error());
+	mysql_select_db(DBDATABASE, $conn);
 
 	# This is used for choosing which side images should go on.  The
 	# preferred side is always the right side since it doesn't interfere
@@ -97,14 +99,14 @@ function alldays(checkbox)
 	print "    <tr>\n";
 	print "      <td bgcolor=\"#FFFFFF\" rowspan=2>\n";
 	if (TRUE) {
-	    print "<a href=\"".PPLARGE."\" title=\"Click for full-size image\"><img style=\"border: 2px solid white;\" src=\"".PPSMALL."\" alt=\"Pedalpalooza\"></a>\n";
+	    print "<a href=\"images/pp2015full.jpg\" title=\"Click for full-size image\"><img style=\"border: 2px solid white;\" src=\"images/pp2015.jpg\" alt=\"Pedalpalooza\"></a>\n";
 	} else {
 	    print "<img style=\"border: 2px solid white;\" src=\"images/pedalpalooza_low.jpg\" alt=\"Pedalpalooza\"></a>\n";
 	}
 	print "      </td>\n";
 	print "      <td>\n";
 	print "	<h1 style=\"margin:0;\">Pedalpalooza</h1>\n";
-	print "	<h3 style=\"margin:0;\">".PPDATES.", 2015</h3>\n";
+	print "	<h3 style=\"margin:0;\">Jun 4-27, 2015</h3>\n";
 	print "      </td>\n";
 	print "      <td align=center>\n";
 	print "	<button onclick=\"window.location.replace('calform.php?form=pp')\">Add an Event</button>\n";
@@ -121,7 +123,7 @@ function alldays(checkbox)
 	print "      <td colspan=2>\n";
 
 	# Get event counts
-	$result = mysql_query("SELECT calevent.id FROM calevent, caldaily WHERE calevent.id = caldaily.id AND eventdate>=\"".PPSTART."\" AND eventdate<=\"".PPEND."\" AND eventstatus<>\"E\" AND eventstatus<>\"C\" AND eventstatus<>\"S\" AND review<>\"E\"", $conn) or die(mysql_error());
+	$result = mysql_query("SELECT calevent.id FROM calevent, caldaily WHERE calevent.id = caldaily.id AND eventdate>=\"2015-06-04\" AND eventdate<=\"2015-06-27\" AND eventstatus<>\"E\" AND eventstatus<>\"C\" AND eventstatus<>\"S\" AND review<>\"E\"", $conn) or die(mysql_error());
 	$repeatcount = mysql_num_rows($result);
 	for ($uniquecount = 0; $record = mysql_fetch_array($result); ) {
 	    if (repeatfirstinstance($record) == NULL)
@@ -135,21 +137,11 @@ function alldays(checkbox)
 	if (TRUE) {
 	    print "<strong>Pedalpalooza</strong> is 3+ weeks of bikey fun.\n";
 	    print "With <strong title=\"$repeatcount if you include repeats, as previous Pedalpalooza calendars did.\">$uniquecount</strong> different events,\n";
-	    print "most organized by individuals, bikers of all persuasions\n";
-	    print "are likely to find many events of interest.\n";
+	    print "most organized by individuals.\n";
 	    print "Nearly all events are free.\n";
 	    print "<p>";
 
-	    print "Visiting from out of town?\n";
-	    print "We've started a <a href=\"http://www.shift2bikes.org/allbike.php#Visitor Info\">Visitor Info</a> page on our Wiki.\n";
-	    print "<p>";
-
-	    print "To add your event to this schedule, click\n";
-	    print "<a href=\"calform.php?form=pp\">[Add&nbsp;an&nbsp;Event]</a>, above.\n";
-	    print "If your event is already on the schedule and need to change\n";
-	    print "or cancel your event, click the link in the confirmation\n";
-	    print "email.  If that doesn't work, ";
-	    print "<a href=\"/contacts/index.php?eCon=CalCrew\">contact the calendar crew.</a>\n";
+	    print "Pedalpalooza 2015 is over, but...<h2><a href=viewpp2016.php>2016 is coming!</a></h2>\n";
 	    print "<p>\n";
 	    if (FALSE) {
 		print "<scri"."pt type=\"text/javascript\">\n";
@@ -161,10 +153,10 @@ function alldays(checkbox)
 		print "</scri"."pt>\n";
 	    } else {
 
-		print "The deadline for the print calendar has passed.\n";
-		print "You can still add events!\n";
-		print "They probably won't appear in the printed calendar, but the\n";
-		print "online calendar sees a lot of traffic throughout Pedalpalooza.\n";
+	#	print "The deadline for the print calendar has passed.\n";
+	#	print "You can still add events!\n";
+	#	print "They probably won't appear in the printed calendar, but the\n";
+	#	print "online calendar sees a lot of traffic throughout Pedalpalooza.\n";
 	    }
 	} else {
 	    print "<div style=\"font-size: x-large;\"><strong>Pedalpalooza 2015 is <em>over</em>...</strong>\n";
@@ -174,7 +166,7 @@ function alldays(checkbox)
 	    print "<p>If you had a great ride idea but didn't have time to lead\n";
 	    print "it during Pedalpalooza, go ahead and add it now.  Promote it\n";
 	    print "the mailing list.  Maybe hand out flyers at regular events such as\n";
-	    print "<a href=\"http://shift2bikes.org/wikiwiki/bikefun:breakfast_on_the_bridges\">Breakfast on the Bridges</a> and\n";
+	    print "<a href=\"http://shift2bikes.org/biki/bikefun:breakfast_on_the_bridges\">Breakfast on the Bridges</a> and\n";
 	    print "the <a href=\"http://midnightmysteryride.wordpress.com/\">Midnight Mystery Ride</a>.\n";
 	    print "<p>Bikey fun continues forever because we (including you) make it happen!\n";
 	    print "</div>\n";
@@ -190,7 +182,7 @@ function alldays(checkbox)
 	#print "      src=\"../wnbr/smallhidden.html\">\n";
 	#print "</iframe>\n";
 
-	#print "A <a href=\"".PPURL."?p=y&i=n\">printer-friendly</a>\n";
+	#print "A <a href=\"view2015.php?p=y&i=n\">printer-friendly</a>\n";
 	#print "version of this calendar is also available\n";
 	#print "<p>\n";
 
@@ -248,8 +240,8 @@ function alldays(checkbox)
       </td>
 <?php
     # For each day...
-    $enddate = strtotime(PPEND);
-    for ($thisdate = strtotime(PPSTART); $thisdate <= $enddate; $thisdate += 86400) {
+    $enddate = strtotime("2015-06-27");
+    for ($thisdate = strtotime("2015-06-04"); $thisdate <= $enddate; $thisdate += 86400) {
 	# Start new row each Sunday
 	$dayofweek = date("D", $thisdate);
 	if ($dayofweek == "Sun")
@@ -318,8 +310,8 @@ function alldays(checkbox)
     # for each day...
     $today = strtotime(date("Y-m-d"));
     $tomorrow = $today + 86400;
-    $enddate = strtotime(PPEND);
-    for ($thisdate = strtotime(PPSTART); $thisdate <= $enddate; $thisdate += 86400) {
+    $enddate = strtotime("2015-06-27");
+    for ($thisdate = strtotime("2015-06-04"); $thisdate <= $enddate; $thisdate += 86400) {
 	#output the day
 	if ($_REQUEST["p"] == "")
 	    print "  <div class=hr></div>\n";

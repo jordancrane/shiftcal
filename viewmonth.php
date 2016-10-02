@@ -17,12 +17,25 @@
 	include("include/view.php");
 	include(INCLUDES."/header.html");
 ?>
-
-<link rel='stylesheet' href='<?php echo CALURL; ?>css/viewmonth.css' />
-
+<style type="text/css">
+  div.content { background: #ffc969; }
+  div.tiny { font-size: xx-small; font-stretch: ultra-condensed; }
+  div.tinier { font-size: xx-small; font-stretch: ultra-condensed; }
+  th.weeks { border: none; background: url(images/oocorner.gif) no-repeat; padding-top: 3px; }
+  td.weeks { vertical-align: top; }
+  td.today { vertical-align: top; background: #ffcf00; }
+  h2 {margin: 0; padding-left: 3px; background: url(images/oocorner.gif) no-repeat; clear: left;}
+  dl {margin: 5px; page-break-before: avoid; page-break-after: auto; }
+  dt {margin-top: 5px; font-weight: bold; clear: left; }
+  dd {margin-bottom: 10px; margin-left: 50px; }
+  dt.canceled { text-decoration: line-through; }
+  dd.canceled { text-decoration: line-through; }
+  div.hr {font-size: 1; height:3px; margin: 0; margin-top: 5px; width: 100%; background-color: #ff9a00;}
+  form { margin: 0; }
+</style>
 <?php
-	
-	
+	$conn = mysql_connect(DBHOST, DBUSER, DBPASSWORD) or die(mysql_error());
+	mysql_select_db(DBDATABASE, $conn);
 
 	# Choose the month.
 	$now = getdate();
@@ -45,7 +58,7 @@
 		print "<td>&nbsp;</td>\n";
 	    else if ($days > 3 && file_exists("Quotations")) {
 		mt_srand ((double) microtime() * 1000000);
-		$lines = file("includes/text/quotations.txt");
+		$lines = file("Quotations");
 		$line_number = mt_rand(0,sizeof($lines)-1);
 		$quotation = htmlspecialchars($lines[$line_number]);
 		$quotation = preg_replace('/^(.*)~/','<em>$1</em><br>--',$quotation);
@@ -125,7 +138,7 @@
 	</form>
       </th>
 <?php
-    if (isset($_COOKIE[ADMINCOOKIE]) && $_COOKIE[ADMINCOOKIE] == 'bikefun') {
+    if ($_COOKIE[ADMINCOOKIE] == "bikefun") {
 	print "      <th>\n";
 	print "        <form action=\"admin.php\">\n";
 	print "          <input type=submit value=\"Administration Menu\">\n";
@@ -211,7 +224,7 @@
 ?>
 </div>
 <?php
-    if (!isset($_REQUEST['p'])) {
+    if ($_REQUEST["p"] == "") {
 	include(INCLUDES."/footer.html");
     } else {
 	print "</body>";

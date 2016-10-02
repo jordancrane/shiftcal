@@ -14,8 +14,8 @@
     include("include/common.php");
     include(INCLUDES."/header.html");
     include("include/view.php");
-    
-    
+    $conn = mysql_connect(DBHOST, DBUSER, DBPASSWORD) or die(mysql_error());
+    mysql_select_db(DBDATABASE, $conn);
 
     # Create the calshare table.  If the table already exists, then this
     # will fail harmlessly
@@ -36,7 +36,7 @@
 	}
     }
 ?>
-<script type="text/javascript" src="<?php echo CALURL; ?>js/xmlextras.js">
+<script type="text/javascript" src="include/xmlextras.js">
 </script>
 <script type="text/javascript">
 var startdate = "<?php print PPSTART; ?>";

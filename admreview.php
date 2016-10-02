@@ -26,8 +26,8 @@
 
     include("include/common.php");
     include("include/repeat.php");
-    
-    
+    $conn = mysql_connect(DBHOST, DBUSER, DBPASSWORD) or die(mysql_error());
+    mysql_select_db(DBDATABASE, $conn);
 
     $loggedin = 0;
     if ($_POST["user"] == ADMINUSER && $_POST["pass"] == ADMINPASS) {
@@ -97,7 +97,7 @@
     div.contactRevised	{ font-weight: normal; }
     a.button { border: medium outset #ffd080; background: #ffd080; text-decoration: none; padding-left: 2px; padding-right: 2px; cursor: pointer; white-space: nowrap;}
 </style>
-<script type="text/javascript" src="<?php echo CALURL; ?>js/xmlextras.js"></script>
+<script type="text/javascript" src="include/xmlextras.js"></script>
 <script type="text/javascript">
 <?php print "SHIFTEMAIL = \"".SHIFTEMAIL."\";\n"; ?>
 </script>
@@ -150,7 +150,7 @@ function emailbody(eventid)
     return "Please edit the PRINT DESCRIPTION of your "+title+"\n"+
 	    "event as soon as possible.  Right now the calendar crew\n"+
 	    "doesn't feel it is \"print ready\" and the print deadline\n"+
-	    "is May 10.  The current PRINT DESCRIPTION is:\n"+
+	    "is May 15.  The current PRINT DESCRIPTION is:\n"+
 	    "\n"+
 	    desc.wordWrap(60, "\n")+"\n"+
 	    "\n"+

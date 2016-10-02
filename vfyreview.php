@@ -15,8 +15,8 @@
 include("include/common.php");
 
 # Open a connection to the SQL server
-
-
+$conn = mysql_connect(DBHOST, DBUSER, DBPASSWORD) or die(mysql_error());
+mysql_select_db(DBDATABASE, $conn);
 
 # Fetch the edit= parameter and convert it to an id
 $id = unobscure($_REQUEST["edit"]);
@@ -74,7 +74,7 @@ if ($review == "S") {
     $body = "Please edit the PRINT DESCRIPTION of your ".$record["tinytitle"]."\n".
 	    "event as soon as possible.  Right now the calendar crew\n".
 	    "doesn't feel it is \"print ready\" and the print deadline\n".
-	    "is May 10.  The current PRINT DESCRIPTION is:\n".
+	    "is May 15.  The current PRINT DESCRIPTION is:\n".
 	    "\n".
 	    wordwrap($record["printdescr"], 60)."\n".
 	    "\n".
