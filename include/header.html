@@ -64,6 +64,28 @@
 	z-index: 8000;
 }
 
+#mobile-button-a {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #container {
+        top: 164px !important;
+    }
+    #mobile-button-a {
+        display: block;
+    }
+    #mobile-button {
+        text-align: center;
+        display: block;
+        line-height: 50px;
+        background-color: #ffcc00;
+        border-radius: 10px;
+        border: 2px solid #663300;
+        margin: 100px 10px 10px;
+    }
+}
+
 /* ---------- BODY ------------- */
 #container {
 	TOP: 110px;
@@ -207,7 +229,11 @@ a.whtyel:hover { color: #ffff00; font-weight:bold; }
 	</div>
 	<div id="header_bar"></div>
 	<div id="bar_rule"></div>
-
+    <a href="/betacal" id="mobile-button-a">
+        <div id="mobile-button">
+            View Mobile Calendar
+        </div>
+    </a>
 <div id=container>
          
 <!-- end header include -->
