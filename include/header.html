@@ -1,11 +1,12 @@
-<!-- header include :: THIS IS A MODIFIED VERSION OF SHIFT'S USUAL HEADER. -->
-<!-- The only modification is that robots are allowed. -->
+<!-- header include -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <title>S H I F T to bikes!</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
+<!-- exclude cooperative (like search engines) robot programs from probing pages -->
+<meta name="robots" content="noindex,nofollow" />
 <!-- ensures no content is cached, thereby making the browser retrieve the page from the server on each load -->
 <META HTTP-EQUIV="Expires: Mon, 26 Jul 2002 05:00:00 GMT" CONTENT="0">
 <META HTTP-EQUIV="Pragma: no-cache" CONTENT="no-cache">
@@ -17,17 +18,13 @@
 
 <style type=text/css>
 /* ---------- HEADER ------------- */
-#logo {
-	TOP: 12px; LEFT: 12px; WIDTH: 152px; HEIGHT: 85px; POSITION: absolute; Z-INDEX: 7000; 
-}
+#logo {	TOP: 12px; LEFT: 12px; WIDTH: 152px; HEIGHT: 85px; POSITION: absolute; Z-INDEX: 7000; }
 
-#keeping {
-	TOP: 15px; LEFT: 248px; WIDTH: 500px; HEIGHT: 16px; POSITION: absolute; Z-INDEX: 6001; 
-}
+#keeping {	TOP: 15px; LEFT: 248px; WIDTH: 500px; HEIGHT: 16px; POSITION: absolute; Z-INDEX: 6001; }
 
-#inPortland {
-	TOP: 25px; LEFT: 350px; WIDTH: 400px; HEIGHT: 32pt; POSITION: absolute; Z-INDEX: 6000; 
-}
+#inPortland { TOP: 25px; LEFT: 350px; WIDTH: 400px; HEIGHT: 32pt; POSITION: absolute; Z-INDEX: 6000; }
+
+#hostSponsor { TOP: 4px; LEFT: 715px; WIDTH: 186px; HEIGHT: 60pt; POSITION: absolute; Z-INDEX: 6004; }
 
 #header_bar {
 	margin: 0 0 0 0;
@@ -55,13 +52,7 @@
 	font-size: 8pt;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-weight:bold;
-	top: 70px;
-	left: 105px;
-	right: 0;
-	overflow: hidden;
-	height: 15px;
-	position: absolute;
-	z-index: 8000;
+	TOP: 70px; LEFT: 105px; WIDTH: 1000px; HEIGHT: 15px; POSITION: absolute; Z-INDEX: 8000;
 }
 
 #mobile-button-a {
@@ -215,17 +206,21 @@ a.whtyel:hover { color: #ffff00; font-weight:bold; }
 		in Portland, Oregon
 		</font>
 	</div>
+	<div id=hostSponsor>
+		<a href="http://www.canvasdreams.com/sustainability/"><img src="http://www.shift2bikes.org/includes/cvd-affiliate-186x60.jpg" border=0></a>
+	</div>
 	<div id="nav_position">
 		<a href="/whoWeAre.php" class=stb_nav>Who We Are</a> &nbsp;|&nbsp;
-		<a href="http://www.shift2bikes.org/betacal/www/#viewEvents" class=stb_nav>"New Cal"</a> |&nbsp;
-		<a href="/pedalpalooza/index.shtml" class=stb_nav>PedalPalooza</a> |&nbsp;
+		<a href="/cal/" class=stb_nav>"ClassicCal"</a> |&nbsp;
+		<a href="http://www.shift2bikes.org/betacal/www/#pedalpalooza" class=stb_nav>PedalPalooza</a> |&nbsp;
 		<a href="http://lists.riseup.net/www/info/shift" class=stb_nav>List</a> |&nbsp;
 		<a href="/safety/" class=stb_nav>Safety</a> |&nbsp;
 		<a href="/contacts/" class=stb_nav>Contact</a> |&nbsp;
-		<a href="http://www.shift2bikes.org/allbike.php#Move X Bike" class=stb_nav>MoveByBike</a> |&nbsp;
-		<a href="http://www.shift2bikes.org/allbike.php#BonB" class=stb_nav>BreakfastontheBridges</a>
-		
-
+		<!-- <a href="/moveXbike.php" class=stb_nav>MoveByBike</a> |&nbsp;
+		<a href="/bonb.php" class=stb_nav>BreakfastontheBridges</a> |&nbsp; -->
+		<a href="http://www.shift2bikes.org/biki/" class=stb_nav>biki</a> |&nbsp;
+		<!-- <a href="http://www.shift2bikes.org/allbike.php#BonB" class=stb_nav>BreakfastontheBridges</a> -->
+		<a href="http://www.shift2bikes.org/biki/bikefun:breakfast_on_the_bridges" class=stb_nav>BreakfastontheBridges</a>
 	</div>
 	<div id="header_bar"></div>
 	<div id="bar_rule"></div>
