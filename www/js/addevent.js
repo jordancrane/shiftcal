@@ -52,7 +52,11 @@
 
     function saveEvent(shiftEvent) {
         var isNew = !shiftEvent.id;
-        var opts = buildSaveEventRequest(shiftEvent, isNew)
+        var postVars = eventFromForm();
+        if (!isNew) {
+            postVars['id'] = shiftEvent.id;
+        }
+        var opts = buildSaveEventRequest(postVars)
 
         $.when($.ajax(opts)).done(function (returnVal) {
             var msg = isNew ?
@@ -83,17 +87,11 @@
         });
     }
 
-    function buildSaveEventRequest(shiftEvent, isNew) {
+    function buildSaveEventRequest(postVars) {
         $('.form-group').removeClass('has-error');
         $('[aria-invalid="true"]').attr('aria-invalid', false);
         $('.help-block').remove();
         $('#save-result').removeClass('text-danger').text('');
-
-        var postVars = eventFromForm();
-
-        if (!isNew) {
-            postVars['id'] = shiftEvent.id;
-        }
 
         var data = new FormData();
         $.each($('#image')[0].files, function (i, file) {
