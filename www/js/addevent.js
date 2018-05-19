@@ -78,7 +78,7 @@
 
             $('#save-result').addClass('text-danger').text(err.message);
 
-            addFieldErrors();
+            addFieldErrors(err);
             expandErrorFields();
         });
     }
@@ -125,7 +125,7 @@
         $('#secret').val(returnVal.secret);
     }
 
-    function addFieldErrors() {
+    function addFieldErrors(err) {
         $.each(err.fields, function (fieldName, message) {
             var input = $('[name=' + fieldName + ']');
             var parent = input.closest('.form-group,.checkbox');
@@ -157,7 +157,7 @@
 
         shiftEvent.timeOptions = [];
         meridian = 'AM';
-        // TODO: There has to be a better way to do this
+        // TODO: Use moment here
         for ( h = 0; h < 24; h++ ) {
             for ( m = 0; m < 60; m += 15 ) {
                 if ( h > 11 ) {
