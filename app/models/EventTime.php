@@ -4,7 +4,7 @@ class EventTime extends fActiveRecord {
     public static function createNewEventTime($eventId, $dateStatus) {
         $date = $dateStatus['date'];
         $newsflash = $dateStatus['newsflash'];
-        $status = EventTime::checkStatusNotNull($dateStatus);
+        $status = $dateStatus['status'];
 
         $eventTime = new EventTime();
         $eventTime->setModified(time());
@@ -13,16 +13,6 @@ class EventTime extends fActiveRecord {
         $eventTime->setEventstatus($status);
         $eventTime->setNewsflash($newsflash);
         $eventTime->store();
-    }
-
-    // TODO: This functionality should probably be delegated to the database
-    // but I don't know how to alter the schema to add a default value
-    // for the status column
-    public static function checkStatusNotNull($dateStatus) {
-        if (isset($dateStatus['status'])) {
-            return $dateStatus['status'];
-        } 
-        return 'A';
     }
 
     public static function getByID($id) {
@@ -63,10 +53,9 @@ class EventTime extends fActiveRecord {
     }
 
     private function updateStatus($dateStatus) {
-        $status = EventTime::checkStatusNotNull($dateStatus['status']);
-        if ($this->getEventstatus() !== $status) {
+        if ($this->getEventstatus() !== $dateStatus['status']) {
             // EventTime status is different than the request, update EventTime db entry
-            $this->setEventstatus($status);
+            $this->setEventstatus($dateStatus['status']);
         }
         if ($this->getNewsflash() !== $dateStatus['newsflash']) {
             // EventTime newsflash is different than the request, update EventTime db entry

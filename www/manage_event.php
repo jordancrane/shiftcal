@@ -133,7 +133,7 @@ function get_new_date_statuses($dateStatuses) {
     $newDateStatuses = array();
 
     foreach ($dateStatuses as $dateStatus) {
-        if ($dateStatus['id'] === null) {
+        if (empty($dateStatus['id'])) {
             $newDateStatuses []= $dateStatus;
         }
     }
@@ -145,7 +145,7 @@ function get_existing_date_statuses($dateStatuses) {
     $existingDateStatuses = array();
 
     foreach ($dateStatuses as $dateStatus) {
-        if ($dateStatus['id'] !== null) {
+        if (!empty($dateStatus['id'])) {
             $existingDateStatuses[$dateStatus['id']] = $dateStatus;
         }
     }
