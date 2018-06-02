@@ -6,9 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch-js": "PATH=\"node_modules/.bin:$PATH\" watchify src/js/* -o www/js/bundle.js -dv",
-    "watch": "npm run watch-js",
+    "watch-scss": "PATH=\"node_modules/.bin:$PATH\" node-sass --watch src/scss/main.scss > www/css/main.css",
+    "watch": "npm run watch-js & npm run watch-scss",
     "build-js": "PATH=\"node_modules/.bin:$PATH\" browserify src/js/* | uglifyjs -mc > www/js/bundle.js",
-    "build": "npm run build-js"
+    "build-scss": "PATH=\"node_modules/.bin:$PATH\" node-sass --output-style compressed src/scss/main.scss > www/css/main.css",
+    "build": "npm run build-js & npm run build-scss"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,8 @@
   "homepage": "https://github.com/shift2bikes/shiftcal#readme",
   "devDependencies": {
     "browserify": "^16.2.2",
-    "uglifyjs": "^2.4.11",
+    "node-sass": "^4.9.0",
+    "uglify-js": "^3.3.28",
     "watchify": "^3.11.0"
   }
 }
