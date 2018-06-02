@@ -1,0 +1,28 @@
+{
+  "name": "shiftcal",
+  "version": "1.0.0",
+  "description": "This is the source code for the Shift/Pedalpalooza Calendar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-js": "PATH=\"node_modules/.bin:$PATH\" watchify src/js/* -o www/js/bundle.js -dv",
+    "watch": "npm run watch-js",
+    "build-js": "PATH=\"node_modules/.bin:$PATH\" browserify src/js/* | uglifyjs -mc > www/js/bundle.js",
+    "build": "npm run build-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shift2bikes/shiftcal.git"
+  },
+  "author": "Shift2Bikes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shift2bikes/shiftcal/issues"
+  },
+  "homepage": "https://github.com/shift2bikes/shiftcal#readme",
+  "devDependencies": {
+    "browserify": "^16.2.2",
+    "uglifyjs": "^2.4.11",
+    "watchify": "^3.11.0"
+  }
+}
