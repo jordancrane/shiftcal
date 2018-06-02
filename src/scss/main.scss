@@ -4,6 +4,20 @@ Typically they will not be visible.
 But if someone is using a high contrast display mode, the border will appear.
 */
 
+$date-color-1: #fd6;
+$date-color-2: #fc6;
+$date-color-3: #fe9;
+$date-select-color: #ffbd2c;
+
+$primary-text-color: #630;
+$nav-bg-color: #f90;
+$primary-btn-bg-color: $nav-bg-color;
+$calander-title-and-archive-bg-color: $nav-bg-color;
+
+$featured-event-bg-color: #fcfaf2;
+$featured-event-border-color: $date-color-1;
+$cancelled-color: #D00000;
+
 body {
     font-family: Helvetica, Arial, sans-serif;
     color: rgb(64, 64, 64);
@@ -19,7 +33,7 @@ nav.navbar {
 }
 
 .navbar-default {
-    background-color: #f90;
+    background-color: $nav-bg-color;
     background-image: none;
     border: 1px solid transparent;
     border-top-left-radius: 0px;
@@ -27,7 +41,7 @@ nav.navbar {
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
     .navbar-brand {
-        color: #663300;
+        color: $primary-text-color;
     }
     .navbar-collapse {
         border: none;
@@ -36,15 +50,15 @@ nav.navbar {
         fill: currentColor;
     }
     .navbar-toggle {
-        border: 1px solid #630;
+        border: 1px solid $primary-text-color;
         .icon-bar {
-            background-color: #630;
+            background-color: $primary-text-color;
         }
     }
 }
 
 .navbar-toggle {
-    border: 1px solid #630;
+    border: 1px solid $primary-text-color;
 }
 
 .navbar-right {
@@ -55,7 +69,7 @@ nav.navbar {
 
 .nav>li>a {
     display: inline-block;
-    color: #630 !important;
+    color: $primary-text-color !important;
     font-weight: bold;
     text-shadow: none;
 }
@@ -69,7 +83,7 @@ button {
     width: 100px;
     height: 70px;
     text-align: center;
-    color: #630;
+    color: $primary-text-color;
     position: fixed;
     bottom: 75px;
     right: 40px;
@@ -94,8 +108,9 @@ svg.icon {
 
 .facebook-share {
     a {
-        color: #3C5A99;
-        border: 1px solid #3C5A99;
+        $primary-color: #3C5A99;
+        color: $primary-color;
+        border: 1px solid $primary-color;
         border-radius: 2px;
         width: auto;
         padding: 4px;
@@ -105,7 +120,7 @@ svg.icon {
         &:focus {
             text-decoration: none;
             color: white;
-            background: #3C5A99;
+            background: $primary-color;
         }
     }
     img {
@@ -132,7 +147,7 @@ svg.icon {
 }
 
 h1 {
-    color: #630;
+    color: $primary-text-color;
     text-align: center;
     font-size: 2em;
     font-weight: bold;
@@ -140,8 +155,8 @@ h1 {
 }
 
 .date h2 {
-    background-color: #fd6;
-    color: #630;
+    background-color: $date-color-1;
+    color: $primary-text-color;
     border: 1px solid transparent;
     float: left;
     width: 100%;
@@ -157,7 +172,7 @@ h1 {
         text-align: center;
         font-weight: bold;
         font-size: 18px;
-        color: #663300;
+        color: $primary-text-color;
     }
     dfn {
         font-style: normal;
@@ -178,8 +193,8 @@ h1 {
         padding: 0.5em;
     }
     .year {
-        color: #630;
-        background: #f90;
+        color: $primary-text-color;
+        background: $calander-title-and-archive-bg-color;
     }
 }
 
@@ -203,12 +218,12 @@ h1 {
         }
     }
     &.featured {
-        background-color: #FCFAF2;
-        border: 1px solid #FFDD66;
+        background-color: $featured-event-bg-color;
+        border: 1px solid $featured-event-border-color;
         .featured-text {
             text-align: center;
             font-weight: bold;
-            color: #630;
+            color: $primary-text-color;
             text-transform: uppercase;
         }
     }
@@ -228,7 +243,7 @@ h1 {
 .cancelled-text {
     font-weight: normal;
     text-transform: uppercase;
-    background: #D00000;
+    background: $cancelled-color;
     color: white;
     padding: 2px 4px;
     border: 1px solid transparent;
@@ -238,8 +253,8 @@ h1 {
 }
 
 .newsflash {
-    color: #D00000;
-    border: 1px dashed #D00000;
+    color: $cancelled-color;
+    border: 1px dashed $cancelled-color;
     border-radius: 2px;
     padding: 2px 4px;
     overflow-wrap: break-word;
@@ -271,25 +286,29 @@ h3 {
 }
 
 .time {
+    $audience-A-color: #D00000;
+    $audience-F-color: #008000;
+    $audience-bg-color: #F2FCF2;
+
     text-align: right;
     time {
         margin-top: 10px;
         display: inline-block;
     }
     .audience-F {
-        background: #F2FCF2;
-        color: #008000;
+        background: $audience-bg-color;
+        color: $audience-F-color;
         padding: 2px 4px;
-        border: 1px solid #008000;
+        border: 1px solid $audience-F-color;
         border-radius: 2px;
         display: inline-block;
         width: auto;
     }
     .audience-A {
-        background: #FCF2F2;
-        color: #D00000;
+        background: $audience-bg-color;
+        color: $audience-A-color;
         padding: 2px 4px;
-        border: 1px solid #D00000;
+        border: 1px solid $audience-A-color;
         border-radius: 2px;
         display: inline-block;
         width: auto;
@@ -317,8 +336,8 @@ h3 {
 }
 
 .btn-add-event {
-    color: #630;
-    background: #f90;
+    color: $primary-text-color;
+    background: $primary-btn-bg-color;
 }
 
 .mainDetails p {
@@ -366,9 +385,9 @@ a.expand-details {
 
 #pp-banner {
     text-align: center;
-    color: #663300;
-    background: #FCFAF2;
-    border: 1px solid #FFDD66;
+    color: $primary-text-color;
+    background: $featured-event-border-color;
+    border: 1px solid $date-color-1;
     padding: 1em;
     .pp-headline {
         font-weight: bold;
@@ -377,7 +396,7 @@ a.expand-details {
     button[data-toggle-target] {
         border: none;
         background: none;
-        color: #663300;
+        color: $primary-text-color;
         margin-top: 16px;
     }
 }
@@ -432,11 +451,11 @@ button.jump-to-date {
 }
 
 #date-select-pp {
-    background-color: #ffbd2c;
+    background-color: $date-select-color;
 }
 
 .date-select-style {
-    background-color: #ffbd2c;
+    background-color: $date-select-color;
     overflow: scroll;
 }
 
@@ -478,7 +497,7 @@ button.jump-to-date {
     position: relative;
     width: 30px;
     color: #fff;
-    background-color: #f90;
+    background-color: $calander-title-and-archive-bg-color;
     font-weight: bold;
 }
 
@@ -488,7 +507,7 @@ button.jump-to-date {
 .color-jul,
 .color-sep,
 .color-nov {
-    background-color: #fc6;
+    background-color: $date-color-2;
 }
 
 .color-jan-odd,
@@ -503,7 +522,7 @@ button.jump-to-date {
 .color-aug,
 .color-oct,
 .color-dec {
-    background-color: #fd6;
+    background-color: $date-color-1;
 }
 
 .color-feb-odd,
@@ -512,7 +531,7 @@ button.jump-to-date {
 .color-aug-odd,
 .color-oct-odd,
 .color-dec-odd {
-    background-color: #fe9;
+    background-color: $date-color-3;
 }
 
 .calendar-month-title span {
@@ -546,9 +565,9 @@ button.jump-to-date {
 }
 
 .modal-dialog .modal-footer .btn-warning {
-    color: #630;
+    color: $primary-text-color;
     background-image: none;
-    background-color: #f90;
+    background-color: $primary-btn-bg-color;
     text-shadow: none;
 }
 
@@ -557,7 +576,7 @@ button.more-events {
     width: 100%;
     text-align: center;
     font-size: 1.5em;
-    color: #630;
+    color: $primary-text-color;
     background: none;
     border: 1px solid transparent;
 }
