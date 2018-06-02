@@ -25,13 +25,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ## How to setup & run locally
 
 1. First install docker (only tested on linux and mac)
+2. Install node & npm
 2. `cd` to the shiftcal directory
+2. Run `npm i`
+2. Run `npm run build`
 3. Run `./nift up`
 4. Get a mysql dump from One
 5. Temporarily move the dump into the shiftcal directory
 6. Run `cat dump.sql | ./nift mysql-pipe`
 7. Make a copy of `config.php.example` and rename it `config.php`
 8. Access https://localhost:4443 and ignore the certificate warning
+
+To iterate on the front end, you can run `npm run watch`, and then open a new terminal to run `./nift up`. This will compile changes to the scss and js whenever the files are saved.
 
 The event images are not included; the site will work without them. If you want to see the existing event images locally, get a backup of the images from One. Place the event images in `www/calendarimages`.
 
